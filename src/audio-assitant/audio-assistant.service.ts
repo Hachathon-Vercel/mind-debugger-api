@@ -12,7 +12,7 @@ export class AudioAssistantService {
 
   async audioAssitant( text: string ) {
     const ELEVENLAB_ID = process.env.ELEVENLAB_ID ?? "";
-    const URL = `https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB`;
+    const URL = `https://api.elevenlabs.io/v1/text-to-speech/2Lb1en5ujrODDIqmp7F3`;
 
     const header = new Headers();
     header.append("accept", "audio/mpeg");
@@ -38,15 +38,9 @@ export class AudioAssistantService {
 
     const responseEleven = await fetch(URL, requestOptions);
 
-    console.log("responseEleven: ", responseEleven);
-    console.log(responseEleven.status)
-
     const status = responseEleven.status === 200
 
     const buffer = await responseEleven.arrayBuffer();
-
-    console.log("buffer: ", buffer);
-    
 
     const pathFile = join(process.cwd(), 'tmp', `${Date.now()}-audio.mp3`);
     console.log("pathFile: ", pathFile);
