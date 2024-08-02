@@ -11,30 +11,30 @@ import * as path from 'path';
 export class AudioAssistantService {
 
 
-  async audioAssitant( text: string ) {
+  async audioAssitant(text: string) {
     const ELEVENLAB_ID = process.env.ELEVENLAB_ID ?? "";
     const URL = `https://api.elevenlabs.io/v1/text-to-speech/2Lb1en5ujrODDIqmp7F3`;
 
     const header = new Headers();
     header.append("accept", "audio/mpeg");
-    header.append("xi-api-key", "5a9e982e71a27ba02fdc3595a3c1a591");
+    header.append("xi-api-key", "sk_d703f75a4c4f60bef827930126967e7fff7e72cba5ad7272");
     header.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-        "model_id": "eleven_multilingual_v2",
-        "text": text,
-        "voice_settings": {
-            "similarity_boost": 0.3,
-            "stability": 0.64,
-            "style": 0.08,
-            "use_speaker_boost": true
-        }
+      "model_id": "eleven_multilingual_v2",
+      "text": text,
+      "voice_settings": {
+        "similarity_boost": 0.3,
+        "stability": 0.64,
+        "style": 0.08,
+        "use_speaker_boost": true
+      }
     });
 
     const requestOptions = {
-        method: "POST",
-        headers: header,
-        body: raw,
+      method: "POST",
+      headers: header,
+      body: raw,
     };
 
     const responseEleven = await fetch(URL, requestOptions);
@@ -63,10 +63,10 @@ export class AudioAssistantService {
 
     console.log("status: ", status);
 
-  
+
     return pathFile;
   }
 
 
-  
+
 }
