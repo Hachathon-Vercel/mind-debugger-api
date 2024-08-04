@@ -10,7 +10,7 @@ import { QuestionDto } from './dtos/question.dto';
 export class SamAssistantService {
 
   private openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey:  `${process.env.OPENAI}`,
   });
 
 

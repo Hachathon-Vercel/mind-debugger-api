@@ -13,11 +13,11 @@ export class AudioAssistantService {
 
   async audioAssitant(text: string) {
     const ELEVENLAB_ID = process.env.ELEVENLAB_ID ?? "";
-    const URL = `https://api.elevenlabs.io/v1/text-to-speech/aviXFY7Zd7b9DnCUwaCh`;
+    const URL = `https://api.elevenlabs.io/v1/text-to-speech/${process.env.VOICE}`;
 
     const header = new Headers();
     header.append("accept", "audio/mpeg");
-    header.append("xi-api-key", "sk_f9832ca145f40cdfe3fc26acde9f47da004f971845caae42");
+    header.append("xi-api-key", `${process.env.ASSISTANT}`);
     header.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
