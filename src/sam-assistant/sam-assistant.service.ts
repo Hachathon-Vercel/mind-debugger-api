@@ -5,21 +5,30 @@ import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import { checkCompleteStatusUseCase, createMessageUseCase, createRunUseCase, createThreadUseCase, getMessageListUseCase } from './use-cases';
 import { QuestionDto } from './dtos/question.dto';
+import { ThreadDto } from './dtos/thread.dto';
 
 @Injectable()
 export class SamAssistantService {
 
-  private openai = new OpenAI({
-    apiKey:  `${process.env.OPENAI}`,
+private openai: OpenAI;
+
+async loadApiKey(apiKey: string) {
+  this.openai = new OpenAI({
+    apiKey: apiKey,
   });
+}
 
-
-  async createThread() {
+  async createThread(threadDto: ThreadDto) {
+    const { apiKey } = threadDto;
+    console.log('api key', apiKey);
+    this.loadApiKey(apiKey)
     return await createThreadUseCase( this.openai );
   }
 
   async userQuestion( questionDto: QuestionDto ) {
-    const { threadId, question } = questionDto;
+    const { threadId, question, apiKey } = questionDto;
+
+    this.loadApiKey(apiKey);
 
     const message = await createMessageUseCase(this.openai, { threadId, question });
     

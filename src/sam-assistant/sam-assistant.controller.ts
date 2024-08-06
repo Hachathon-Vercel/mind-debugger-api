@@ -2,6 +2,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { SamAssistantService } from './sam-assistant.service';
 import { QuestionDto } from './dtos/question.dto';
+import { ThreadDto } from './dtos/thread.dto';
 
 @Controller('sam-assistant')
 export class SamAssistantController {
@@ -10,8 +11,10 @@ export class SamAssistantController {
 
 
   @Post('create-thread')
-  async createThread() {
-    return await this.samAssistantService.createThread();
+  async createThread(
+    @Body() threadDto: ThreadDto
+  ) {
+    return await this.samAssistantService.createThread(threadDto);
   }
 
   @Post('user-question')

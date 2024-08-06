@@ -2,11 +2,11 @@
 import { IsString } from 'class-validator';
 
 
-export class AudioDto {
+export class ThreadDto {
+
 
   @IsString()
-  readonly text: string;
+  readonly apiKey: string;
 
-  
 
 }
