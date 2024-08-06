@@ -3,14 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
-import * as fs from 'fs';
-
 async function bootstrap() {
-
-  const httpsOptions = {
-    key: fs.readFileSync('./src/cert/key.pem'),
-    cert: fs.readFileSync('./src/cert/cert.pem'),
-  };
 
 
   const app = await NestFactory.create(
@@ -27,6 +20,7 @@ async function bootstrap() {
   );
 
   app.enableCors();
+
 
 
   //app.use( bodyParser.json({ limit: '10mb' }) );
